@@ -1,7 +1,7 @@
-import React from "react";
+import HomePage from "./HomePage";
 
 const App = () => {
-  return <div className="flex flex-col justify-center items-center text-3xl text-black font-bold">Hello</div>;
+  return <HomePage />;
 };
 
 export default App;
