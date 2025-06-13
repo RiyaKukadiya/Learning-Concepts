@@ -43,7 +43,7 @@ const HttpStatusCodePage: React.FC = () => {
         {statusCodes.map((item) => (
           <motion.li
             key={item.code}
-            className="p-2 border border-black bg-white/20 w-full"
+            className="list-disc list-inside"
             variants={itemVariants}
           >
             <span className="font-semibold">
