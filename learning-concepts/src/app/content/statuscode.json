@@ -1,0 +1,20 @@
+[
+  {"code": 200, "label": "OK", "description": "Request succeeded"},
+  {"code": 201, "label": "Created", "description": "Resource created"},
+  {"code": 202, "label": "Accepted", "description": "Accepted request"},
+  {"code": 204, "label": "No Content", "description": "Accepted request"},
+  {"code": 301, "label": "Moved Permanently", "description": "Accepted request"},
+  {"code": 302, "label": "Found", "description": "Temporarily moved"},
+  {"code": 304, "label": "Not Modified", "description": "Not modified"},
+  {"code": 400, "label": "Bad Request", "description": "Bad request error"},
+  {"code": 401, "label": "Unauthorized", "description": "Needs authentication"},
+  {"code": 403, "label": "Forbidden", "description": "Access Forbidden"},
+  {"code": 404, "label": "Not Found", "description": "Resource Not Found"},
+  {"code": 405, "label": "Not Allowed", "description": "Method not allowed"},
+  {"code": 408, "label": "Request Timeout", "description": "Request timed out"},
+  {"code": 500, "label": "Internal Server Error", "description": "Server error"},
+  {"code": 501, "label": "Not Implemented", "description": "Not implemented"},
+  {"code": 502, "label": "Bad Gateway", "description": "Bad gateway error"},
+  {"code": 503, "label": "Service Unavailable", "description": "Service unavailable"},
+  {"code": 504, "label": "Gateway Timeout", "description": "Gateway Timeout"}
+]

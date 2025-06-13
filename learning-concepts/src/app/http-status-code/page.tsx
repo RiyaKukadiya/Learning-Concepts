@@ -1,27 +1,29 @@
-export default function HttpStatusCodePage() {
-  return (
-    <main style={{padding: '2rem'}}>
-      <h1>HTTP Status Codes</h1>
-      <ul style={{lineHeight: '2'}}>
-        <li>200 OK: Request succeeded</li>
-        <li>201 Created: Resource created</li>
-        <li>202 Accepted: Accepted request</li>
-        <li>204 No Content: Accepted request</li>
-        <li>301 Moved Permanently: Accepted request</li>
-        <li>302 Found: Temporarily moved</li>
-        <li>304 Not Modified: Not modified</li>
-        <li>400 Bad Request: Bad request error</li>
-        <li>401 Unauthorized: Needs authentication</li>
-        <li>403 Forbidden: Access Forbidden</li>
-        <li>404 Not Found: Resource Not Found</li>
-        <li>405 Not Allowed: Method not allowed</li>
-        <li>408 Request Timeout: Request timed out</li>
-        <li>500 Internal Server Error: Server error</li>
-        <li>501 Not Implemented: Not implemented</li>
-        <li>502 Bad Gateway: Bad gateway error</li>
-        <li>503 Service Unavailable: Service unavailable</li>
-        <li>504 Gateway Timeout: Gateway Timeout</li>
-      </ul>
-    </main>
-  );
+import React from "react";
+import statusCodesData from "../content/statuscode.json";
+interface StatusCode {
+  code: number;
+  label: string;
+  description: string;
 }
+
+const HttpStatusCodePage: React.FC = () => {
+  const statusCodes = statusCodesData as StatusCode[];
+
+  return (
+    <div className="mx-auto py-10 px-4">
+      <h1 className="text-3xl font-bold mb-6">HTTP Status Codes</h1>
+      <ul className="flex flex-col justify-center items-start gap-2">
+        {statusCodes.map((item) => (
+          <li key={item.code} className="p-2 border border-black bg-white/20">
+            <span className="font-semibold ">
+              {item.code} {item.label}:
+            </span>{" "}
+            {item.description}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default HttpStatusCodePage;
