@@ -1,9 +1,7 @@
-export default function Home() {
-  return (
-    <div>
-      <main>
-       hello
-      </main>
-    </div>
-  );
-}
+import React from "react";
+
+const App = () => {
+  return <div className="text-3xl text-black font-bold"> hello</div>;
+};
+
+export default App;

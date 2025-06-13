@@ -1,13 +1,22 @@
+import React from "react";
 import Link from "next/link";
 
-export default function Footer() {
-  return (
-    <footer style={{padding: '1rem', background: '#f5f5f5', borderTop: '1px solid #ddd', marginTop: '2rem', textAlign: 'center'}}>
-      <nav style={{display: 'flex', gap: '1rem', justifyContent: 'center'}}>
-        <Link href="/">Home</Link>
-        <Link href="/http-status-code">HTTP Status Code</Link>
+const Footer = () => (
+  <footer className="bg-gray-900 text-white py-4 px-6 mt-10">
+    <div className="flex justify-between items-center">
+      <span>&copy; {new Date().getFullYear()} Learning Concepts</span>
+      <nav>
+        <ul className="flex space-x-6">
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/http-status-code">HTTP Status Code</Link>
+          </li>
+        </ul>
       </nav>
-      <div style={{marginTop: '0.5rem', fontSize: '0.9rem', color: '#888'}}>© 2025 Learning Concepts</div>
-    </footer>
-  );
-}
+    </div>
+  </footer>
+);
+
+export default Footer;
