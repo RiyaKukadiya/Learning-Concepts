@@ -1,6 +1,13 @@
 "use client";
 import React from "react";
 import reacthook from "../content/reacthook.json";
+import UseStateLiveExample from "../components/UseStateLiveExample";
+import UseEffectLiveExample from "../components/UseEffectLiveExample";
+import UseContextLiveExample from "../components/UseContextLiveExample";
+import UseRefLiveExample from "../components/UseRefLiveExample";
+import UseMemoLiveExample from "../components/UseMemoLiveExample";
+import UseCallbackLiveExample from "../components/UseCallbackLiveExample";
+import HookCards from "../components/HookCards";
 
 type ReactHookData = {
   title: string;
@@ -16,30 +23,26 @@ const data = reacthook as ReactHookData;
 
 export default function ReactHookPage() {
   return (
-    <div className="min-h-screen p-8 flex flex-col items-center animate-fade-in">
+    <div className="container mx-auto min-h-screen p-8 flex flex-col items-center animate-fade-in">
       <h1 className="text-3xl font-bold mb-4">{data.title}</h1>
       <p className="mb-8 text-lg text-gray-700 dark:text-gray-300">
         {data.description}
       </p>
-      <div className="grid gap-6 w-full max-w-2xl">
-        {data.hooks.map((hook, idx) => (
-          <div
-            key={hook.name}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transform transition duration-500 hover:scale-105 hover:shadow-2xl animate-slide-up"
-            style={{ animationDelay: `${idx * 0.1}s` }}
-          >
-            <h2 className="text-xl font-semibold mb-2 text-blue-600">
-              {hook.name}
-            </h2>
-            <p className="mb-2 text-gray-800 dark:text-gray-200">
-              {hook.description}
-            </p>
-            <pre className="bg-gray-100 dark:bg-gray-900 rounded p-2 text-sm overflow-x-auto">
-              <code>{hook.example}</code>
-            </pre>
-          </div>
-        ))}
-      </div>
+      <HookCards hooks={data.hooks} />
+      {/* Live Example Section */}
+      <section className="w-full mt-12 animate-slide-up">
+        <h2 className="text-2xl font-bold mb-4 text-center text-blue-700 dark:text-blue-300 animate-fade-in">
+          Live React Hook Examples
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
+          <UseStateLiveExample />
+          <UseEffectLiveExample />
+          <UseContextLiveExample />
+          <UseRefLiveExample />
+          <UseMemoLiveExample />
+          <UseCallbackLiveExample />
+        </div>
+      </section>
     </div>
   );
 }

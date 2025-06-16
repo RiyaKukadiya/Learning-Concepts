@@ -1,0 +1,87 @@
+{
+  "title": "Understanding the Domain Name System (DNS)",
+  "sections": [
+    {
+      "heading": "What is DNS?",
+      "content": "The Domain Name System (DNS) is the Internet's phonebook. It translates human-friendly domain names (like example.com) into machine-friendly IP addresses, allowing browsers to load Internet resources without users needing to memorize complex IP addresses."
+    },
+    {
+      "heading": "How Does DNS Work?",
+      "steps": [
+        "A user enters a domain name (e.g., example.com) in their browser.",
+        "The browser sends a query to a DNS recursive resolver.",
+        "The resolver queries a root nameserver.",
+        "The root server responds with the address of a TLD (Top Level Domain) server (e.g., .com).",
+        "The resolver queries the TLD server.",
+        "The TLD server responds with the domain's authoritative nameserver address.",
+        "The resolver queries the authoritative nameserver.",
+        "The authoritative nameserver returns the IP address for the domain.",
+        "The resolver sends the IP address back to the browser, which can now load the website."
+      ]
+    },
+    {
+      "heading": "Types of DNS Servers",
+      "items": [
+        {
+          "name": "DNS Recursive Resolver",
+          "description": "Receives queries from client machines and tracks down the DNS record by making a series of requests. Uses caching to speed up responses.",
+          "example": "Google DNS (8.8.8.8), OpenDNS, ISP resolvers."
+        },
+        {
+          "name": "Root Nameserver",
+          "description": "First step in translating hostnames into IP addresses. Points to TLD servers.",
+          "example": "F-root, A-root, etc."
+        },
+        {
+          "name": "TLD Nameserver",
+          "description": "Handles the last portion of a hostname (e.g., .com, .net) and directs queries to the correct authoritative nameserver.",
+          "example": ".com TLD server."
+        },
+        {
+          "name": "Authoritative Nameserver",
+          "description": "Holds and is responsible for DNS resource records. Provides the final answer for a DNS query.",
+          "example": "Nameserver for example.com."
+        }
+      ]
+    },
+    {
+      "heading": "Types of DNS Queries",
+      "items": [
+        {
+          "name": "Recursive Query",
+          "description": "The DNS client requires a complete answer or an error. The resolver does all the work to resolve the query."
+        },
+        {
+          "name": "Iterative Query",
+          "description": "The DNS server returns the best answer it can, often a referral to another server. The client continues querying down the chain."
+        },
+        {
+          "name": "Non-recursive Query",
+          "description": "Occurs when the DNS resolver already knows the answer (from cache or because it is authoritative)."
+        }
+      ]
+    },
+    {
+      "heading": "DNS Caching",
+      "content": "DNS caching stores DNS query results closer to the client, improving speed and reducing bandwidth. Caching can occur in browsers, operating systems, and DNS resolvers. Each cache has a time-to-live (TTL) after which the data expires.",
+      "items": [
+        {
+          "name": "Browser Cache",
+          "description": "Modern browsers cache DNS records for a set time to speed up repeat visits."
+        },
+        {
+          "name": "OS-level Cache",
+          "description": "The operating system caches DNS records and is the last local stop before a query leaves your device."
+        },
+        {
+          "name": "Resolver Cache",
+          "description": "DNS resolvers cache records to reduce upstream queries and improve performance."
+        }
+      ]
+    },
+    {
+      "heading": "Key Differences: Authoritative vs Recursive DNS Servers",
+      "content": "Authoritative DNS servers hold the actual DNS records and provide final answers to queries. Recursive DNS resolvers act as intermediaries, tracking down records on behalf of clients and using caching to speed up responses."
+    }
+  ]
+}
