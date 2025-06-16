@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 
@@ -28,29 +28,31 @@ const Header = () => {
   return (
     <header
       ref={headerRef}
-      className="bg-gray-900 text-white py-4 px-6 flex justify-between items-center shadow-lg transition-all duration-500"
+      className="bg-gray-900 text-white py-4 px-6 shadow-lg transition-all duration-500"
     >
-      <div>
-        <Link href="/" className="text-xl font-bold">
-          Learning
-        </Link>
+      <div className="container mx-auto flex flex-row justify-between items-center">
+        <div>
+          <Link href="/" className="text-xl font-bold">
+            Learning
+          </Link>
+        </div>
+        <nav>
+          <ul className="flex space-x-6">
+            <li>
+              <Link href="/http-status-code">HTTP Status Code</Link>
+            </li>
+            <li>
+              <Link href="/react-hook">React Hooks</Link>
+            </li>
+            <li>
+              <Link href="/http-status-code">DNS System</Link>
+            </li>
+            <li>
+              <Link href="/http-status-code">ES6</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul className="flex space-x-6">
-          <li>
-            <Link href="/http-status-code">HTTP Status Code</Link>
-          </li>
-          <li>
-            <Link href="/http-status-code">React Hooks</Link>
-          </li>
-          <li>
-            <Link href="/http-status-code">DNS System</Link>
-          </li>
-          <li>
-            <Link href="/http-status-code">ES6</Link>
-          </li>
-        </ul>
-      </nav>
     </header>
   );
 };
