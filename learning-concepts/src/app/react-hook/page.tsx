@@ -31,16 +31,19 @@ export default function ReactHookPage() {
       <HookCards hooks={data.hooks} />
       {/* Live Example Section */}
       <section className="w-full mt-12 animate-slide-up">
-        <h2 className="text-2xl font-bold mb-4 text-center text-blue-700 dark:text-blue-300 animate-fade-in">
-          Live React Hook Examples
+        <h2 className="text-3xl font-bold mb-4 text-center">
+          Hooks Examples
         </h2>
+         <p className="mb-8 text-center text-lg text-gray-700 dark:text-gray-300">
+      Here are the examples of the usage of react-hooks
+      </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
           <UseStateLiveExample />
           <UseEffectLiveExample />
           <UseContextLiveExample />
           <UseRefLiveExample />
           <UseMemoLiveExample />
-          <UseCallbackLiveExample />
+          <UseCallbackLiveExample /> 
         </div>
       </section>
     </div>

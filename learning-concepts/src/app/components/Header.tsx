@@ -50,6 +50,9 @@ const Header = () => {
             <li>
               <Link href="/http-status-code">ES6</Link>
             </li>
+            <li>
+              <Link href="/page">Canonical Page</Link>
+            </li>
           </ul>
         </nav>
       </div>

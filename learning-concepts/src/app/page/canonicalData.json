@@ -1,0 +1,27 @@
+{
+  "title": "Canonical React Page",
+  "description": "This is a canonical page with custom animation and SEO-friendly canonical URL.",
+  "alternates": {
+    "canonical": "/page"
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "summary": "Learn about canonical pages and their importance for SEO.",
+      "content": "A canonical page is the preferred version of a set of pages with highly similar content. Using canonical URLs helps search engines understand which version to index and rank." 
+    },
+    {
+      "id": "seo-benefits",
+      "title": "SEO Benefits",
+      "summary": "Understand how canonical URLs improve SEO.",
+      "content": "Canonical URLs prevent duplicate content issues and consolidate ranking signals for similar or duplicate pages, improving your site's SEO." 
+    },
+    {
+      "id": "implementation",
+      "title": "Implementation",
+      "summary": "How to implement canonical URLs in React/Next.js.",
+      "content": "In Next.js, you can set canonical URLs using the metadata API or by adding a <link rel=\"canonical\"> tag in the <head> section of your pages." 
+    }
+  ]
+}
