@@ -67,3 +67,19 @@ body {
 .animate-slide-up {
   animation: slideUp 0.7s cubic-bezier(.39,.575,.565,1) both;
 }
+
+@keyframes slideLeft {
+  from { transform: translateX(-40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-slide-left {
+  animation: slideLeft 0.7s cubic-bezier(.39,.575,.565,1) both;
+}
+
+@keyframes slideRight {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-slide-right {
+  animation: slideRight 0.7s cubic-bezier(.39,.575,.565,1) both;
+}

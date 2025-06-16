@@ -45,7 +45,7 @@ const Header = () => {
               <Link href="/react-hook">React Hooks</Link>
             </li>
             <li>
-              <Link href="/http-status-code">DNS System</Link>
+              <Link href="/dns-system">DNS System</Link>
             </li>
             <li>
               <Link href="/http-status-code">ES6</Link>

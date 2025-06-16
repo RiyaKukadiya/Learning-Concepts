@@ -1,0 +1,31 @@
+{
+  "title": "DNS System Overview",
+  "description": "Domain Name System (DNS) is the phonebook of the internet. It translates human-friendly domain names to IP addresses.",
+  "records": [
+    {
+      "name": "A Record",
+      "description": "Maps a domain to an IPv4 address.",
+      "example": "example.com -> 93.184.216.34"
+    },
+    {
+      "name": "AAAA Record",
+      "description": "Maps a domain to an IPv6 address.",
+      "example": "example.com -> 2606:2800:220:1:248:1893:25c8:1946"
+    },
+    {
+      "name": "CNAME Record",
+      "description": "Maps a domain to another domain (canonical name).",
+      "example": "www.example.com -> example.com"
+    },
+    {
+      "name": "MX Record",
+      "description": "Specifies mail servers for the domain.",
+      "example": "example.com -> mail.example.com"
+    },
+    {
+      "name": "TXT Record",
+      "description": "Stores text information for sources outside your domain.",
+      "example": "example.com -> v=spf1 include:_spf.google.com ~all"
+    }
+  ]
+}
