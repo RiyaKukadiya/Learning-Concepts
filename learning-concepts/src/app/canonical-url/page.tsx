@@ -21,7 +21,7 @@ export default function CanonicalPage() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200 dark:from-gray-900 dark:to-gray-800 p-8"
+      className="flex flex-col items-center justify-center p-8"
     >
       <motion.h1
         className="text-4xl font-bold mb-4 text-blue-700 dark:text-blue-300"

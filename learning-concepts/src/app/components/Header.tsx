@@ -51,7 +51,7 @@ const Header = () => {
               <Link href="/http-status-code">ES6</Link>
             </li>
             <li>
-              <Link href="/page">Canonical Page</Link>
+              <Link href="/canonical-url">Canonical Page</Link>
             </li>
           </ul>
         </nav>
