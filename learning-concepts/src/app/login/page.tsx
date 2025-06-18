@@ -5,86 +5,76 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-// Step Schemas
+// Validation Schemas
 const emailSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email address'),
 });
-
 const basicInfoSchema = z.object({
   firstname: z.string().min(1, 'First name is required'),
   lastname: z.string().min(1, 'Last name is required'),
   birthday: z.string().min(1, 'Birthday is required'),
   reference: z.string().optional(),
 });
-
 const passwordSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
+// Types
 type EmailFormData = z.infer<typeof emailSchema>;
 type BasicInfoFormData = z.infer<typeof basicInfoSchema>;
 type PasswordFormData = z.infer<typeof passwordSchema>;
 
+const InputField = ({
+  label,
+  error,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) => (
+  <div>
+    <label className="block text-sm font-medium">{label}</label>
+    <input
+      className={`w-full border ${
+        error ? 'border-red-500' : 'border-gray-300'
+      } rounded-md px-4 py-2 mt-1`}
+      {...props}
+    />
+    {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
+  </div>
+);
+
 const LoginPage: React.FC = () => {
   const [step, setStep] = useState(1);
 
-  // Step 1: Email
-  const {
-    register: registerEmail,
-    handleSubmit: handleEmailSubmit,
-    formState: { errors: emailErrors },
-  } = useForm<EmailFormData>({ resolver: zodResolver(emailSchema) });
-
-  // Step 2: Basic Info
-  const [basicInfo, setBasicInfo] = useState<BasicInfoFormData>({
-    firstname: '',
-    lastname: '',
-    birthday: '',
-    reference: '',
+  const emailForm = useForm<EmailFormData>({
+    resolver: zodResolver(emailSchema),
   });
-  const [basicInfoErrors, setBasicInfoErrors] = useState<Record<string, string>>({});
 
-  // Step 3: Password
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const basicForm = useForm<BasicInfoFormData>({
+    resolver: zodResolver(basicInfoSchema),
+    defaultValues: { firstname: '', lastname: '', birthday: '', reference: '' },
+  });
 
-  // Handle Step 1 Submission
-  const onEmailSubmit = (data: EmailFormData) => {
+  const passwordForm = useForm<PasswordFormData>({
+    resolver: zodResolver(passwordSchema),
+    defaultValues: { password: '' },
+  });
+
+  const handleEmailSubmit = (data: EmailFormData) => {
     console.log('Step 1:', data);
     setStep(2);
   };
 
-  // Handle Step 2 Submission
-  const handleBasicInfoSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = basicInfoSchema.safeParse(basicInfo);
-    if (result.success) {
-      setBasicInfoErrors({});
-      console.log('Step 2:', result.data);
-      setStep(3);
-    } else {
-      const fieldErrors: Record<string, string> = {};
-      result.error.errors.forEach(err => {
-        if (err.path[0]) fieldErrors[err.path[0]] = err.message;
-      });
-      setBasicInfoErrors(fieldErrors);
-    }
+  const handleBasicInfoSubmit = (data: BasicInfoFormData) => {
+    console.log('Step 2:', data);
+    setStep(3);
   };
 
-  // Handle Step 3 Submission
-  const handlePasswordSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = passwordSchema.safeParse({ password });
-    if (result.success) {
-      setPasswordError('');
-      alert('🎉 Account created successfully!');
-    } else {
-      setPasswordError(result.error.errors[0].message);
-    }
+  const handlePasswordSubmit = (data: PasswordFormData) => {
+    console.log('Step 3:', data);
+    alert('🎉 Account created successfully!');
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white px-4">
+    <div className="flex items-center justify-center min-h-auto bg-white px-4 h-[600px]">
       <div className="w-full max-w-3xl">
         <h2 className="text-2xl font-bold text-center mb-1">Create an account</h2>
         <p className="text-center text-sm text-gray-500 mb-6">
@@ -94,7 +84,7 @@ const LoginPage: React.FC = () => {
           </a>
         </p>
 
-        {/* Step Indicators */}
+        {/* Step Indicator */}
         <div className="flex justify-between items-center mb-6">
           {['Enter your email', 'Provide your basic info', 'Create your password'].map((label, i) => (
             <div key={i} className="flex flex-col items-center w-full">
@@ -109,11 +99,7 @@ const LoginPage: React.FC = () => {
               >
                 {i + 1}
               </div>
-              <span
-                className={`text-[10px] mt-1 ${
-                  step === i + 1 ? 'text-black' : 'text-gray-400'
-                }`}
-              >
+              <span className={`text-[10px] mt-1 ${step === i + 1 ? 'text-black' : 'text-gray-400'}`}>
                 {label}
               </span>
             </div>
@@ -122,22 +108,14 @@ const LoginPage: React.FC = () => {
 
         {/* Step 1: Email */}
         {step === 1 && (
-          <form onSubmit={handleEmailSubmit(onEmailSubmit)}>
-            <label className="block text-sm font-medium mb-1">What’s your email?</label>
-            <input
-              {...registerEmail('email')}
+          <form onSubmit={emailForm.handleSubmit(handleEmailSubmit)}>
+            <InputField
+              label="What’s your email?"
+              {...emailForm.register('email')}
+              error={emailForm.formState.errors.email?.message}
               placeholder="Enter your email address"
-              className={`w-full border ${
-                emailErrors.email ? 'border-red-500' : 'border-gray-300'
-              } rounded-md px-4 py-2 mb-1 focus:outline-none focus:ring-2 focus:ring-gray-600`}
             />
-            {emailErrors.email && (
-              <p className="text-sm text-red-500 mb-4">{emailErrors.email.message}</p>
-            )}
-            <button
-              type="submit"
-              className="w-full bg-black text-white py-2 rounded-full font-medium mt-5"
-            >
+            <button type="submit" className="w-full bg-black text-white py-2 rounded-full font-medium mt-5">
               Next
             </button>
           </form>
@@ -145,54 +123,30 @@ const LoginPage: React.FC = () => {
 
         {/* Step 2: Basic Info */}
         {step === 2 && (
-          <form onSubmit={handleBasicInfoSubmit} className="space-y-4">
-            <label className="block text-sm font-medium">First Name</label>
-            <input
-              value={basicInfo.firstname}
-              onChange={e => setBasicInfo({ ...basicInfo, firstname: e.target.value })}
-              className={`w-full border ${
-                basicInfoErrors.firstname ? 'border-red-500' : 'border-gray-300'
-              } rounded-md px-4 py-2`}
+          <form onSubmit={basicForm.handleSubmit(handleBasicInfoSubmit)} className="space-y-4">
+            <InputField
+              label="First Name"
+              {...basicForm.register('firstname')}
+              error={basicForm.formState.errors.firstname?.message}
               placeholder="Enter your first name"
             />
-            {basicInfoErrors.firstname && (
-              <p className="text-sm text-red-500">{basicInfoErrors.firstname}</p>
-            )}
-
-            <label className="block text-sm font-medium">Last Name</label>
-            <input
-              value={basicInfo.lastname}
-              onChange={e => setBasicInfo({ ...basicInfo, lastname: e.target.value })}
-              className={`w-full border ${
-                basicInfoErrors.lastname ? 'border-red-500' : 'border-gray-300'
-              } rounded-md px-4 py-2`}
+            <InputField
+              label="Last Name"
+              {...basicForm.register('lastname')}
+              error={basicForm.formState.errors.lastname?.message}
               placeholder="Enter your last name"
             />
-            {basicInfoErrors.lastname && (
-              <p className="text-sm text-red-500">{basicInfoErrors.lastname}</p>
-            )}
-
-            <label className="block text-sm font-medium">Birthday</label>
-            <input
+            <InputField
+              label="Birthday"
               type="date"
-              value={basicInfo.birthday}
-              onChange={e => setBasicInfo({ ...basicInfo, birthday: e.target.value })}
-              className={`w-full border ${
-                basicInfoErrors.birthday ? 'border-red-500' : 'border-gray-300'
-              } rounded-md px-4 py-2`}
+              {...basicForm.register('birthday')}
+              error={basicForm.formState.errors.birthday?.message}
             />
-            {basicInfoErrors.birthday && (
-              <p className="text-sm text-red-500">{basicInfoErrors.birthday}</p>
-            )}
-
-            <label className="block text-sm font-medium">Reference (optional)</label>
-            <input
-              value={basicInfo.reference}
-              onChange={e => setBasicInfo({ ...basicInfo, reference: e.target.value })}
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
+            <InputField
+              label="Reference (optional)"
+              {...basicForm.register('reference')}
               placeholder="Reference code or name"
             />
-
             <button type="submit" className="w-full bg-black text-white py-2 rounded-full font-medium">
               Next
             </button>
@@ -201,18 +155,14 @@ const LoginPage: React.FC = () => {
 
         {/* Step 3: Password */}
         {step === 3 && (
-          <form onSubmit={handlePasswordSubmit} className="space-y-4">
-            <label className="block text-sm font-medium">Create Password</label>
-            <input
+          <form onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)} className="space-y-4">
+            <InputField
+              label="Create Password"
               type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className={`w-full border ${
-                passwordError ? 'border-red-500' : 'border-gray-300'
-              } rounded-md px-4 py-2`}
+              {...passwordForm.register('password')}
+              error={passwordForm.formState.errors.password?.message}
               placeholder="Create a password"
             />
-            {passwordError && <p className="text-sm text-red-500">{passwordError}</p>}
             <button type="submit" className="w-full bg-black text-white py-2 rounded-full font-medium">
               Create Account
             </button>
@@ -226,7 +176,7 @@ const LoginPage: React.FC = () => {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        {/* Social Login */}
+        {/* Social Buttons */}
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             className="flex-1 flex items-center justify-center border border-gray-300 py-2 rounded-full text-sm font-medium hover:bg-gray-50"
