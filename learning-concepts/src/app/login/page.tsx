@@ -5,24 +5,18 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-// Validation Schemas
-const emailSchema = z.object({
+// Unified Validation Schema
+const unifiedSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email address'),
-});
-const basicInfoSchema = z.object({
   firstname: z.string().min(1, 'First name is required'),
   lastname: z.string().min(1, 'Last name is required'),
   birthday: z.string().min(1, 'Birthday is required'),
   reference: z.string().optional(),
-});
-const passwordSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
-// Types
-type EmailFormData = z.infer<typeof emailSchema>;
-type BasicInfoFormData = z.infer<typeof basicInfoSchema>;
-type PasswordFormData = z.infer<typeof passwordSchema>;
+// Unified Type
+type UnifiedFormData = z.infer<typeof unifiedSchema>;
 
 const InputField = ({
   label,
@@ -43,33 +37,30 @@ const InputField = ({
 
 const LoginPage: React.FC = () => {
   const [step, setStep] = useState(1);
-
-  const emailForm = useForm<EmailFormData>({
-    resolver: zodResolver(emailSchema),
+  const form = useForm<UnifiedFormData>({
+    resolver: zodResolver(unifiedSchema),
+    defaultValues: {
+      email: '',
+      firstname: '',
+      lastname: '',
+      birthday: '',
+      reference: '',
+      password: '',
+    },
+    mode: 'onTouched',
   });
 
-  const basicForm = useForm<BasicInfoFormData>({
-    resolver: zodResolver(basicInfoSchema),
-    defaultValues: { firstname: '', lastname: '', birthday: '', reference: '' },
-  });
-
-  const passwordForm = useForm<PasswordFormData>({
-    resolver: zodResolver(passwordSchema),
-    defaultValues: { password: '' },
-  });
-
-  const handleEmailSubmit = (data: EmailFormData) => {
-    console.log('Step 1:', data);
-    setStep(2);
+  const handleNext = async () => {
+    let fields: (keyof UnifiedFormData)[] = [];
+    if (step === 1) fields = ['email'];
+    if (step === 2) fields = ['firstname', 'lastname', 'birthday', 'reference'];
+    if (step === 3) fields = ['password'];
+    const valid = await form.trigger(fields);
+    if (valid) setStep((s) => s + 1);
   };
 
-  const handleBasicInfoSubmit = (data: BasicInfoFormData) => {
-    console.log('Step 2:', data);
-    setStep(3);
-  };
-
-  const handlePasswordSubmit = (data: PasswordFormData) => {
-    console.log('Step 3:', data);
+  const handleSubmit = (data: UnifiedFormData) => {
+    console.log('All Form Data:', data);
     alert('🎉 Account created successfully!');
   };
 
@@ -108,11 +99,11 @@ const LoginPage: React.FC = () => {
 
         {/* Step 1: Email */}
         {step === 1 && (
-          <form onSubmit={emailForm.handleSubmit(handleEmailSubmit)}>
+          <form onSubmit={e => { e.preventDefault(); handleNext(); }}>
             <InputField
               label="What’s your email?"
-              {...emailForm.register('email')}
-              error={emailForm.formState.errors.email?.message}
+              {...form.register('email')}
+              error={form.formState.errors.email?.message}
               placeholder="Enter your email address"
             />
             <button type="submit" className="w-full bg-black text-white py-2 rounded-full font-medium mt-5">
@@ -123,28 +114,28 @@ const LoginPage: React.FC = () => {
 
         {/* Step 2: Basic Info */}
         {step === 2 && (
-          <form onSubmit={basicForm.handleSubmit(handleBasicInfoSubmit)} className="space-y-4">
+          <form onSubmit={e => { e.preventDefault(); handleNext(); }} className="space-y-4">
             <InputField
               label="First Name"
-              {...basicForm.register('firstname')}
-              error={basicForm.formState.errors.firstname?.message}
+              {...form.register('firstname')}
+              error={form.formState.errors.firstname?.message}
               placeholder="Enter your first name"
             />
             <InputField
               label="Last Name"
-              {...basicForm.register('lastname')}
-              error={basicForm.formState.errors.lastname?.message}
+              {...form.register('lastname')}
+              error={form.formState.errors.lastname?.message}
               placeholder="Enter your last name"
             />
             <InputField
               label="Birthday"
               type="date"
-              {...basicForm.register('birthday')}
-              error={basicForm.formState.errors.birthday?.message}
+              {...form.register('birthday')}
+              error={form.formState.errors.birthday?.message}
             />
             <InputField
               label="Reference (optional)"
-              {...basicForm.register('reference')}
+              {...form.register('reference')}
               placeholder="Reference code or name"
             />
             <button type="submit" className="w-full bg-black text-white py-2 rounded-full font-medium">
@@ -155,12 +146,12 @@ const LoginPage: React.FC = () => {
 
         {/* Step 3: Password */}
         {step === 3 && (
-          <form onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
             <InputField
               label="Create Password"
               type="password"
-              {...passwordForm.register('password')}
-              error={passwordForm.formState.errors.password?.message}
+              {...form.register('password')}
+              error={form.formState.errors.password?.message}
               placeholder="Create a password"
             />
             <button type="submit" className="w-full bg-black text-white py-2 rounded-full font-medium">
