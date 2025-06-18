@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion"; // Import Framer Motion
+import { motion } from "framer-motion";
 import Card from "./Card";
 import styles from "./Card.module.css";
 
@@ -65,6 +65,7 @@ const CardList: React.FC = () => {
 	return (
 		<div className="container mx-auto flex flex-col gap-8 w-full overflow-hidden">
 			<div className="relative w-full min-h-[3.5rem] flex items-center">
+				{/* horizontal infinite scroll */}
 				<motion.h1
 					className="text-3xl font-bold mb-6 whitespace-nowrap absolute w-full"
 					animate={{ x: ["100%", "-100%"] }}
