@@ -1,14 +1,23 @@
-'use client';
+import React, { Suspense } from 'react';
 import { motion } from "framer-motion";
 import CardList from "./components/CardList";
 import DraggableList from "./components/DraggableList";
+import Image from 'next/image';
+// @ts-expect-error: PartialPrerender is experimental
+import { PartialPrerender } from 'next/ppr';
 
 const app = () => {
   return (
     <main className="flex flex-col items-center min-h-screen bg-gray-50">
-      <CardList />
+      <PartialPrerender>
+        <CardList />
+      </PartialPrerender>
       <div className="w-full flex flex-row justify-center">
-        <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
+        <Suspense fallback={<div>Loading draggable list...</div>}>
+          <PartialPrerender>
+            <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
+          </PartialPrerender>
+        </Suspense>
       </div>
       <div className="w-3/5 flex justify-center mt-4">
       {/* SVG animation portion of moving dots according to paths */}
@@ -233,8 +242,8 @@ const app = () => {
     </motion.svg>
       </div>
       <div className="w-2/3 flex justify-center mt-4">
-        <img src="/Marketecture Diagram1_option A (2) (1).svg" />
-        </div>
+        <Image src="/Marketecture Diagram1_option A (2) (1).svg" alt="Marketecture Diagram" width={800} height={400} />
+      </div>
     </main>
   );
 };

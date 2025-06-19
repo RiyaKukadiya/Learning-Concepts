@@ -1,7 +1,9 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { motion } from "framer-motion";
 import statusCodesData from "../content/statuscode.json";
+// @ts-expect-error: PartialPrerender is experimental
+import { PartialPrerender } from 'next/ppr';
 
 interface StatusCode {
   code: number;
@@ -33,27 +35,32 @@ const HttpStatusCodePage: React.FC = () => {
 
   return (
     <div className="container mx-auto flex flex-col justify-center items-center py-10 px-4">
-      <h1 className="text-3xl font-bold mb-6">HTTP Status Codes</h1>
-      <motion.ul
-        className="flex flex-col justify-center items-start gap-2"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {statusCodes.map((item) => (
-          <motion.li
-            key={item.code}
-            className="list-disc list-inside"
-            variants={itemVariants}
+      <PartialPrerender>
+        <h1 className="text-3xl font-bold mb-6">HTTP Status Codes</h1>
+      </PartialPrerender>
+      <Suspense fallback={<div>Loading status codes...</div>}>
+        <PartialPrerender>
+          <motion.ul
+            className="flex flex-col justify-center items-start gap-2"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <span className="font-semibold">
-              {item.code} {item.label}:
-            </span>{" "}
-            {item.description}
-          </motion.li>
-        ))}
-      </motion.ul>
-
+            {statusCodes.map((item) => (
+              <motion.li
+                key={item.code}
+                className="list-disc list-inside"
+                variants={itemVariants}
+              >
+                <span className="font-semibold">
+                  {item.code} {item.label}:
+                </span>{" "}
+                {item.description}
+              </motion.li>
+            ))}
+          </motion.ul>
+        </PartialPrerender>
+      </Suspense>
     </div>
   );
 };
