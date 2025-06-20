@@ -1,0 +1,13 @@
+{
+  "card": {
+    "title": "Welcome to Learning Concepts!",
+    "description": "Explore the key features of our platform designed to enhance your learning experience.",
+    "features": [
+      "Interactive lessons and quizzes",
+      "Personalized learning paths",
+      "Progress tracking dashboard",
+      "Expert-curated resources",
+      "Community support forums"
+    ]
+  }
+}

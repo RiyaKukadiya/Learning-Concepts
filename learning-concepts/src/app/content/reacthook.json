@@ -1,0 +1,81 @@
+{
+  "title": "React Hooks Reference",
+  "description": "A comprehensive list of React hooks with descriptions and usage examples.",
+  "hooks": [
+    {
+      "name": "useState",
+      "description": "Allows you to add state to functional components.",
+      "example": "const [count, setCount] = useState(0);"
+    },
+    {
+      "name": "useEffect",
+      "description": "Performs side effects in function components.",
+      "example": "useEffect(() => { /* effect */ }, [dependencies]);"
+    },
+    {
+      "name": "useContext",
+      "description": "Accesses the value of a React context.",
+      "example": "const value = useContext(MyContext);"
+    },
+    {
+      "name": "useRef",
+      "description": "Returns a mutable ref object.",
+      "example": "const inputRef = useRef(null);"
+    },
+    {
+      "name": "useMemo",
+      "description": "Memoizes a computed value.",
+      "example": "const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);"
+    },
+    {
+      "name": "useCallback",
+      "description": "Memoizes a callback function.",
+      "example": "const memoizedCallback = useCallback(() => { doSomething(a, b); }, [a, b]);"
+    },
+    {
+      "name": "useReducer",
+      "description": "An alternative to useState for complex state logic.",
+      "example": "const [state, dispatch] = useReducer(reducer, initialState);"
+    },
+    {
+      "name": "useLayoutEffect",
+      "description": "Like useEffect, but fires synchronously after all DOM mutations.",
+      "example": "useLayoutEffect(() => { /* effect */ }, [dependencies]);"
+    },
+    {
+      "name": "useImperativeHandle",
+      "description": "Customizes the instance value that is exposed to parent components when using ref.",
+      "example": "useImperativeHandle(ref, () => ({ focus: () => { /* ... */ } }));"
+    },
+    {
+      "name": "useDebugValue",
+      "description": "Displays a label for custom hooks in React DevTools.",
+      "example": "useDebugValue(value);"
+    },
+    {
+      "name": "useId",
+      "description": "Generates a unique ID for accessibility attributes.",
+      "example": "const id = useId();"
+    },
+    {
+      "name": "useTransition",
+      "description": "Lets you update the state without blocking the UI.",
+      "example": "const [isPending, startTransition] = useTransition();"
+    },
+    {
+      "name": "useDeferredValue",
+      "description": "Defer re-rendering a non-urgent part of the UI.",
+      "example": "const deferredValue = useDeferredValue(value);"
+    },
+    {
+      "name": "useSyncExternalStore",
+      "description": "Subscribe to external stores for concurrent rendering.",
+      "example": "const state = useSyncExternalStore(subscribe, getSnapshot);"
+    },
+    {
+      "name": "useInsertionEffect",
+      "description": "Injects styles into the DOM before layout and paint.",
+      "example": "useInsertionEffect(() => { /* insert styles */ }, [dependencies]);"
+    }
+  ]
+}
