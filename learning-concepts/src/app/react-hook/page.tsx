@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import reacthook from "../content/reacthook.json";
-import UseStateLiveExample from "../components/UseStateLiveExample";
-import UseEffectLiveExample from "../components/UseEffectLiveExample";
-import UseContextLiveExample from "../components/UseContextLiveExample";
-import UseRefLiveExample from "../components/UseRefLiveExample";
-import UseMemoLiveExample from "../components/UseMemoLiveExample";
-import UseCallbackLiveExample from "../components/UseCallbackLiveExample";
-import HookCards from "../components/HookCards";
+import UseStateLiveExample from "../../components/UseStateLiveExample";
+import UseEffectLiveExample from "../../components/UseEffectLiveExample";
+import UseContextLiveExample from "../../components/UseContextLiveExample";
+import UseRefLiveExample from "../../components/UseRefLiveExample";
+import UseMemoLiveExample from "../../components/UseMemoLiveExample";
+import UseCallbackLiveExample from "../../components/UseCallbackLiveExample";
+import HookCards from "../../components/HookCards";
 
 type ReactHookData = {
   title: string;

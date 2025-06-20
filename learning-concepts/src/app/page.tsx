@@ -1,7 +1,7 @@
 'use client';
 import { motion } from "framer-motion";
-import CardList from "./components/CardList";
-import DraggableList from "./components/DraggableList";
+import CardList from "../components/CardList";
+import DraggableList from "../components/DraggableList";
 
 const app = () => {
   return (

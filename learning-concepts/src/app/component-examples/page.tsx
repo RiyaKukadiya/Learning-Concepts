@@ -1,8 +1,8 @@
-import { FunctionDeclarationComponent } from "../components/FunctionDeclarationComponent";
-import ArrowFunctionComponent from "../components/ArrowFunctionComponent";
-import ImplicitReturnComponent from "../components/ImplicitReturnComponent";
-import { PropsComponent } from "../components/PropsComponent";
-import BestPracticeComponent from "../components/BestPracticeComponent";
+import { FunctionDeclarationComponent } from "../../components/FunctionDeclarationComponent";
+import ArrowFunctionComponent from "../../components/ArrowFunctionComponent";
+import ImplicitReturnComponent from "../../components/ImplicitReturnComponent";
+import { PropsComponent } from "../../components/PropsComponent";
+import BestPracticeComponent from "../../components/BestPracticeComponent";
 
 export default function ComponentExamplesPage() {
   return (
