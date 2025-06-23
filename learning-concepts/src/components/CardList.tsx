@@ -6,9 +6,13 @@ import styles from "./Card.module.css";
 
 const cardsData = [
 	{
-		title: "Card 1",
-		description: "Description for card 1.",
-		features: ["Feature 1", "Feature 2", "Feature 3"],
+		title: "How to make SVG image clickable?",
+		description: "",
+		features: [
+			"Go to the SVG code file",
+		 	"In the <svg> tag, add this line: xmlns:xlink=\"http://www.w3.org/1999/xlink\"  ",
+			"Find the path for make it clikcbale, and wrap it into the <a> tag."
+		],
 	},
 	{
 		title: "Card 2",

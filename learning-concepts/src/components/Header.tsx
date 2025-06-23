@@ -48,7 +48,7 @@ const Header = () => {
               <Link href="/dns-system">DNS System</Link>
             </li>
             <li>
-              <Link href="/http-status-code">ES6</Link>
+              <Link href="/react-components">Component</Link>
             </li>
             <li>
               <Link href="/canonical-url">Canonical Page</Link>
