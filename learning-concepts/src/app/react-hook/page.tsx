@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import reacthook from "../content/reacthook.json";
+import reacthook from "@/content/reacthook.json"
 import UseStateLiveExample from "../../components/UseStateLiveExample";
 import UseEffectLiveExample from "../../components/UseEffectLiveExample";
 import UseContextLiveExample from "../../components/UseContextLiveExample";
