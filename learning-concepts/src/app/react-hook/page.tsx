@@ -8,6 +8,19 @@ import UseRefLiveExample from "../../components/UseRefLiveExample";
 import UseMemoLiveExample from "../../components/UseMemoLiveExample";
 import UseCallbackLiveExample from "../../components/UseCallbackLiveExample";
 import HookCards from "../../components/HookCards";
+// import UseReducerLiveExample from "../../components/UseReducerLiveExample";
+// import UseImperativeHandleLiveExample from "../../components/UseImperativeHandleLiveExample";
+// import UseLayoutEffectLiveExample from "../../components/UseLayoutEffectLiveExample";
+// import UseInsertionEffectLiveExample from "../../components/UseInsertionEffectLiveExample";
+// import UseTransitionLiveExample from "../../components/UseTransitionLiveExample";
+// import UseDeferredValueLiveExample from "../../components/UseDeferredValueLiveExample";
+// import UseIdLiveExample from "../../components/UseIdLiveExample";
+// import UseSyncExternalStoreLiveExample from "../../components/UseSyncExternalStoreLiveExample";
+// import UseDebugValueLiveExample from "../../components/UseDebugValueLiveExample";
+// import UseActionStateLiveExample from "../../components/UseActionStateLiveExample";
+// import UseFormStatusLiveExample from "../../components/UseFormStatusLiveExample";
+import UseOptimisticLiveExample from "../../components/UseOptimisticLiveExample";
+// import UseLiveExample from "../../components/UseLiveExample";
 
 type ReactHookData = {
   title: string;
@@ -39,11 +52,24 @@ export default function ReactHookPage() {
       </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
           <UseStateLiveExample />
+          {/* <UseReducerLiveExample /> */}
           <UseEffectLiveExample />
+          {/* <UseLayoutEffectLiveExample /> */}
+          {/* <UseInsertionEffectLiveExample /> */}
           <UseContextLiveExample />
           <UseRefLiveExample />
+          {/* <UseImperativeHandleLiveExample /> */}
           <UseMemoLiveExample />
-          <UseCallbackLiveExample /> 
+          <UseCallbackLiveExample />
+          {/* <UseTransitionLiveExample /> */}
+          {/* <UseDeferredValueLiveExample /> */}
+          {/* <UseIdLiveExample /> */}
+          {/* <UseSyncExternalStoreLiveExample /> */}
+          {/* <UseDebugValueLiveExample /> */}
+          {/* <UseActionStateLiveExample /> */}
+          {/* <UseFormStatusLiveExample /> */}
+          <UseOptimisticLiveExample />
+          {/* <UseLiveExample /> */}
         </div>
       </section>
     </div>
