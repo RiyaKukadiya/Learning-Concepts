@@ -3,7 +3,7 @@ import CardList from "./CardList";
 
 interface SectionData {
   __component: string;
-  [key: string]: unknown;
+  [key: string]: any;
 }
 
 interface CollectionMapperProps {
@@ -12,7 +12,7 @@ interface CollectionMapperProps {
 
 const componentsMap: Record<string, React.ElementType> = {
   "wrapper-component.card-wrapper": CardList,
-  // Add more mappings here as needed
+  // You can add more component mappings here
 };
 
 const getComponentProps = (
@@ -35,10 +35,10 @@ const CollectionMapper: React.FC<CollectionMapperProps> = ({
         const Component = componentsMap[item.__component];
         if (!Component) return null;
 
-        // Example for extraProps, adjust as needed
+        // You can handle conditional props injection here
         const extraProps =
           item.__component === "wrapper-component.card-wrapper"
-            ? { items: Array.isArray(item.items) ? item.items : [] }
+            ? { items: item.items || [] }
             : {};
 
         return (
