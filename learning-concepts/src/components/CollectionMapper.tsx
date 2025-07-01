@@ -1,35 +1,55 @@
+import React from "react";
 import CardList from "./CardList";
 
-const componentMap: Record<string, React.ComponentType<any>> = {
-  "section-cards.card-list": CardList,
-};
-
-export function getComponentForKey(key: string): React.ComponentType<any> | undefined {
-  return componentMap[key];
-}
-
-export function getComponentProps(item: any): any {
-  // Add custom prop logic per component key if needed
-  // Example:
-  // if (item.__component === "section-cards.card-list") {
-  //   return { ...item, customProp: value };
-  // }
-  return item;
+interface SectionData {
+  __component: string;
+  [key: string]: unknown;
 }
 
 interface CollectionMapperProps {
-  data: any[];
+  data: SectionData[];
 }
 
-const CollectionMapper: React.FC<CollectionMapperProps> = ({ data }) => {
+const componentsMap: Record<string, React.ElementType> = {
+  "wrapper-component.card-wrapper": CardList,
+  // Add more mappings here as needed
+};
+
+const getComponentProps = (
+  item: SectionData,
+  props?: Record<string, unknown>
+): Record<string, unknown> => {
+  return {
+    ...item,
+    ...props,
+  };
+};
+
+const CollectionMapper: React.FC<CollectionMapperProps> = ({
+  data,
+  ...props
+}) => {
   return (
-    <>
-      {data.map((item, idx) => {
-        const Comp = getComponentForKey(item.__component);
-        if (!Comp) return null;
-        return <Comp key={idx} {...getComponentProps(item)} />;
+    <div>
+      {data?.map((item, index) => {
+        const Component = componentsMap[item.__component];
+        if (!Component) return null;
+
+        // Example for extraProps, adjust as needed
+        const extraProps =
+          item.__component === "wrapper-component.card-wrapper"
+            ? { items: item.items }
+            : {};
+
+        return (
+          <Component
+            key={index}
+            {...getComponentProps(item, props)}
+            {...extraProps}
+          />
+        );
       })}
-    </>
+    </div>
   );
 };
 
