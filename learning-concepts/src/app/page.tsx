@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import CardList from "../components/CardList";
+import CollectionMapper from "../components/CollectionMapper";
 import DraggableList from "../components/DraggableList";
 import fetchApi from "@/utils/strapi";
 
@@ -7,11 +7,29 @@ import fetchApi from "@/utils/strapi";
 export default async function HomePage() {
   // Fetch card list data from Strapi
   const response = await fetchApi({ endpoint: "api/homepage" });
-  const cards = response?.data || [];
+  const data = response?.data?.body || {};
+  // let cards = response?.data || [];
+  // if (!Array.isArray(cards)) {
+  //   // If the data is a single object, wrap it in an array with a __component key for mapping
+  //   cards = [
+  //     {
+  //       __component: "section-cards.card-list",
+  //       items: cards.card
+  //         ? [{
+  //             heading: {
+  //               title: cards.card.title,
+  //               description: cards.card.description,
+  //             },
+  //             featureList: (cards.card.features || []).map((f: string) => ({ title: f })),
+  //           }]
+  //         : [],
+  //     },
+  //   ];
+  // }
 
   return (
     <main className="flex flex-col items-center min-h-screen bg-gray-50">
-      <CardList items={cards} />
+      <CollectionMapper data={data} />
       <div className="w-full flex flex-row justify-center">
         <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
       </div>
