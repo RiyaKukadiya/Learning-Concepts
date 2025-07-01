@@ -1,12 +1,17 @@
-"use client";
 import { motion } from "framer-motion";
 import CardList from "../components/CardList";
 import DraggableList from "../components/DraggableList";
+import fetchApi from "@/utils/strapi";
 
-const app = () => {
+
+export default async function HomePage() {
+  // Fetch card list data from Strapi
+  const response = await fetchApi({ endpoint: "/homepage" });
+  const cards = response?.data || [];
+
   return (
     <main className="flex flex-col items-center min-h-screen bg-gray-50">
-      <CardList />
+      <CardList cards={cards} />
       <div className="w-full flex flex-row justify-center">
         <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
       </div>
@@ -331,5 +336,3 @@ const app = () => {
     </main>
   );
 };
-
-export default app;
