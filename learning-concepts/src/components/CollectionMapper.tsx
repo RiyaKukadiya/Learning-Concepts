@@ -38,7 +38,7 @@ const CollectionMapper: React.FC<CollectionMapperProps> = ({
         // Example for extraProps, adjust as needed
         const extraProps =
           item.__component === "wrapper-component.card-wrapper"
-            ? { items: item.items }
+            ? { items: Array.isArray(item.items) ? item.items : [] }
             : {};
 
         return (
