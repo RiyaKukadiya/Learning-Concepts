@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import dnsData from "../content/dns.json";
+import dnsData from "@/content/dns.json";
 
 // New types for optimized structure
 interface DNSSection {

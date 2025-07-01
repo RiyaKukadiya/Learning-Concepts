@@ -76,6 +76,11 @@
       "name": "useInsertionEffect",
       "description": "Injects styles into the DOM before layout and paint.",
       "example": "useInsertionEffect(() => { /* insert styles */ }, [dependencies]);"
+    },
+    {
+      "name": "useOptimistic",
+      "description": "Provides an optimistic version of state that updates immediately in the UI before confirming changes from the server. Useful for improving perceived performance in form submissions, comments, likes, etc.",
+      "example": "const [optimisticData, addOptimisticData] = useOptimistic(data, (state, newItem) => [...state, newItem]);"
     }
   ]
 }
