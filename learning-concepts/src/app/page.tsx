@@ -6,7 +6,7 @@ import fetchApi from "@/utils/strapi";
 
 export default async function HomePage() {
   // Fetch card list data from Strapi
-  const response = await fetchApi({ endpoint: "/homepage" });
+  const response = await fetchApi({ endpoint: "api/homepage" });
   const cards = response?.data || [];
 
   return (

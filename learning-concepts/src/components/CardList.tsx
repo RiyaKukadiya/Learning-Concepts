@@ -5,14 +5,17 @@ import Card from "./Card";
 import styles from "./Card.module.css";
 
 interface CardListProps {
-  cards: {
-    title: string;
-    description: string;
-    features: string[];
+  items: {
+    heading: {
+      title: string;
+      description: string;
+    };
+    featureList: { title: string }[];
+    featureImage?: string;
   }[];
 }
 
-const CardList: React.FC<CardListProps> = ({ cards }) => {
+const CardList: React.FC<CardListProps> = ({ items }) => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -49,14 +52,8 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
         </motion.h1>
       </div>
 
-      {cards.map((card, idx) => (
-        <div
-          key={idx}
-          ref={(el) => {
-            cardRefs.current[idx] = el;
-          }}
-          className={styles.card}
-        >
+      {items.map((card, idx) => (
+        <div key={idx} className={styles.card}>
           <Card {...card} />
         </div>
       ))}
