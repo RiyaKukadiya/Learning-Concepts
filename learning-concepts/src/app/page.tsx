@@ -11,7 +11,7 @@ export default async function HomePage() {
 
   return (
     <main className="flex flex-col items-center min-h-screen bg-gray-50">
-      <CardList cards={cards} />
+      <CardList items={cards} />
       <div className="w-full flex flex-row justify-center">
         <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
       </div>
