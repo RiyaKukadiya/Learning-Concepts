@@ -36,7 +36,7 @@ const CardList: React.FC<CardListProps> = ({ items }) => {
   }, []);
 
   return (
-    <div className="container mx-auto flex flex-col gap-8 w-full overflow-hidden">
+    <div className="container mx-auto flex flex-col max-w-full overflow-hidden">
       <div className="relative w-full min-h-[3.5rem] flex items-center">
         <motion.h1
           className="text-3xl font-bold mb-6 whitespace-nowrap absolute w-full"
@@ -51,9 +51,8 @@ const CardList: React.FC<CardListProps> = ({ items }) => {
           tempor incididunt ut labore et dolore magna aliqua
         </motion.h1>
       </div>
-
       {items.map((card, idx) => (
-        <div key={idx} className={styles.card}>
+        <div key={idx}>
           <Card {...card} />
         </div>
       ))}

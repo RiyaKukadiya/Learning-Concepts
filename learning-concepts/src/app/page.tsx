@@ -6,7 +6,9 @@ import fetchApi from "@/utils/strapi";
 
 export default async function HomePage() {
   // Fetch card list data from Strapi
-  const response = await fetchApi({ endpoint: "api/homepage?populate=*" });
+  const response = await fetchApi({ endpoint: "api/homepage?pLevel=4" });
+  console.log("Response from Strapi:", response);
+
   let data = response?.data?.body;
   // Transform data to match CollectionMapper/CardList expectations
   if (!Array.isArray(data)) {
