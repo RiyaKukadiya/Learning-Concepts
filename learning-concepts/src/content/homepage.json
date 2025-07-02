@@ -9,5 +9,47 @@
       "Expert-curated resources",
       "Community support forums"
     ]
+  },
+  "interchangeWrapper": {
+    "heading": {
+      "title": "Explore Our Features",
+      "description": "Discover the unique aspects of our platform through interactive sections."
+    },
+    "items": [
+      {
+        "title": "Personalized Learning",
+        "image": {
+          "url": "/public/globe.svg",
+          "alt": "Personalized Learning Globe"
+        },
+        "items": [
+          {
+            "title": "Adaptive Content",
+            "description": "Content adapts to your learning style and pace."
+          },
+          {
+            "title": "Custom Recommendations",
+            "description": "Receive suggestions tailored to your interests."
+          }
+        ]
+      },
+      {
+        "title": "Community Support",
+        "image": {
+          "url": "/public/vercel.svg",
+          "alt": "Community Support Icon"
+        },
+        "items": [
+          {
+            "title": "Expert Forums",
+            "description": "Get answers from experienced educators and peers."
+          },
+          {
+            "title": "Live Events",
+            "description": "Participate in webinars and Q&A sessions."
+          }
+        ]
+      }
+    ]
   }
 }

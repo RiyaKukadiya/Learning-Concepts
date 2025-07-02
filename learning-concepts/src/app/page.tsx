@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import CollectionMapper from "../components/CollectionMapper";
+import CustomInterchangeWrapper from "../components/wrapper/CustomInterchangeWrapper";
 import DraggableList from "../components/DraggableList";
 import fetchApi from "@/utils/strapi";
 
@@ -38,6 +39,7 @@ export default async function HomePage() {
       <div className="w-full flex flex-row justify-center">
         <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
       </div>
+
    
       <div className="grid grid-cols-3 text-center">
         <div>
