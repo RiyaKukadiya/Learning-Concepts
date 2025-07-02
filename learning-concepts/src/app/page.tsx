@@ -56,7 +56,7 @@ export default async function HomePage() {
   const interchangeData = homepageData.interchangeWrapper;
 
   return (
-    <main className="flex flex-col items-center min-h-screen bg-gray-50">
+    <main className=" container mx-auto flex flex-col min-h-screen bg-gray-50">
       <CollectionMapper data={data} />
       <div className="w-full flex flex-row justify-center">
         <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />

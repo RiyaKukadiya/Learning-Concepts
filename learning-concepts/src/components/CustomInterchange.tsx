@@ -30,16 +30,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
     >
       {/* Left Side: Image */}
       <div className="relative w-full md:w-1/2">
-        <div
-          className="absolute inset-0 bg-cover bg-center rounded-lg z-0"
-          style={{
-            backgroundImage: `url('/img/bg/gradient-bg/featureBG.svg')`,
-          }}
-        ></div>
-
-        <div className="relative w-full h-auto rounded-lg shadow-md p-3 z-10">
+        <div className="w-full h-auto rounded-lg">
           <img
-            src={image.url}
+            src={image?.url}
             alt={image.alt}
             className="w-full h-auto rounded-lg shadow-md"
           />

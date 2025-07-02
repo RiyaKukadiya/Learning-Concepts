@@ -27,8 +27,8 @@ const InterchangeWrapper: React.FC<InterchangeWrapperProps> = ({
   return (
     <div className="container mx-auto p-6 mt-5">
       <div className="flex flex-col items-center justify-center">
-        <h1>{heading.title}</h1>
-        <p>{heading.description}</p>
+        <h1 className="text-3xl font-bold mb-6 text-center">{heading.title}</h1>
+        <p className="text-lg text-center mb-8">{heading.description}</p>
       </div>
       {items.map((item, index) => (
         <div className="mb-8 md:mb-0" key={index}>
