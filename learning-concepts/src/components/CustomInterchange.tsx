@@ -1,5 +1,12 @@
 import React from "react";
 
+// Helper to prefix Strapi base URL if needed
+const getImageUrl = (url?: string) => {
+  if (!url) return "";
+  if (url.startsWith("http")) return url;
+  return `http://localhost:1337${url}`; // Change base URL if needed
+};
+
 interface FeatureSectionProps {
   title: string;
   image: {
@@ -31,11 +38,13 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
       {/* Left Side: Image */}
       <div className="relative w-full md:w-1/2">
         <div className="w-full h-auto rounded-lg">
-          <img
-            src={image?.url}
-            alt={image.alt}
-            className="w-full h-auto rounded-lg shadow-md"
-          />
+          {image?.url && (
+            <img
+              src={getImageUrl(image.url)}
+              alt={image.alt || title}
+              className="w-full h-auto rounded-lg shadow-md"
+            />
+          )}
         </div>
       </div>
 

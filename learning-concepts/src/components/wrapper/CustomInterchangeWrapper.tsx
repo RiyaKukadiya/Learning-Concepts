@@ -35,7 +35,7 @@ const InterchangeWrapper: React.FC<InterchangeWrapperProps> = ({
           <CustomInterChange
             items={item.items}
             title={item.title}
-            image={item.image}
+            image={item.image?.[0]} // Pass the first image object if array
             direction={index % 2 === 0 ? "left" : "right"}
           />
         </div>
