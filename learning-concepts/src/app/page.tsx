@@ -1,9 +1,9 @@
 // import { motion } from "framer-motion";
+import FeatureSection from "@/components/CustomInterchange";
 import CollectionMapper from "../components/CollectionMapper";
-import CustomInterchangeWrapper from "../components/wrapper/CustomInterchangeWrapper";
 import DraggableList from "../components/DraggableList";
 import fetchApi from "@/utils/strapi";
-
+import homepageData from "../content/homepage.json";
 
 export default async function HomePage() {
   // Fetch card list data from Strapi
@@ -27,11 +27,33 @@ export default async function HomePage() {
             },
           ],
         },
+          {
+          __component: "wrapper-component.interchangewrapper-wrapper",
+          heading:{
+            title: data.interchange.title,
+            description: data.interchange.description,
+          },
+          items: [
+            {
+              title: data.interchange.items.index[0].title,
+              image: {
+                url: data.interchange.items.index[0].image.url,
+                alt: data.interchange.items.index[0].image.alternativeText || "Image",
+              },
+              items: {
+                title: data.interchange.items.index[0].title,
+                description: data.interchange.items.index[0].description,
+              },
+            },
+          ],
+        },
       ];
     } else {
       data = [];
     }
   }
+  // Fetch CustomInterchange data from homepage.json
+  const interchangeData = homepageData.interchangeWrapper;
 
   return (
     <main className="flex flex-col items-center min-h-screen bg-gray-50">
@@ -39,7 +61,19 @@ export default async function HomePage() {
       <div className="w-full flex flex-row justify-center">
         <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
       </div>
-
+  <div className=" container mx-auto w-full mt-10">
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          {interchangeData.heading.title}
+        </h2>
+        <p className="text-lg text-center mb-8">
+          {interchangeData.heading.description}
+        </p>
+        <div className="flex flex-col gap-8">
+          {interchangeData.items.map((item, idx) => (
+            <FeatureSection key={item.title} {...item} direction={idx % 2 === 0 ? "left" : "right"} />
+          ))}
+        </div>
+      </div>
    
       <div className="grid grid-cols-3 text-center">
         <div>

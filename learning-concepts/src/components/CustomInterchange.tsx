@@ -38,9 +38,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
         ></div>
 
         <div className="relative w-full h-auto rounded-lg shadow-md p-3 z-10">
-          <CustomImage
-            image={image}
-            altText={title}
+          <img
+            src={image.url}
+            alt={image.alt}
             className="w-full h-auto rounded-lg shadow-md"
           />
         </div>
@@ -48,17 +48,17 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
 
       {/* Right Side: Content */}
       <div className="w-full md:w-1/2 z-10 flex flex-col space-y-2">
-        <h2 className="text-[#f4f4f5] font-inter font-semibold text-xl md:text-2xl lg:text-4xl">
+        <h2 className="font-inter font-semibold text-xl md:text-2xl lg:text-4xl">
           {title}
         </h2>
         {items?.length > 0 && (
           <div className="flex flex-col space-y-2">
             {items.map((item, index) => (
               <div key={index} className="flex flex-col space-y-1">
-                <h3 className="font-inter font-semibold text-sm md:text-base lg:text-lg text-white">
+                <h3 className="font-inter font-semibold text-sm md:text-base lg:text-lg ">
                   {item.title}
                 </h3>
-                <p className="font-inter text-sm text-gray-300">
+                <p className="font-inter text-sm">
                   {item.description}
                 </p>
               </div>
