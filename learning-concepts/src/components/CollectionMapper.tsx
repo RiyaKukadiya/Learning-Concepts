@@ -13,7 +13,7 @@ interface CollectionMapperProps {
 
 const componentsMap: Record<string, React.ElementType> = {
   "wrapper-component.card-wrapper": CardList,
-  "wrapper-component.custom-interchange-wrapper": CustomInterchangeWrapper
+  "wrapper-component.directional-card-wrapper": CustomInterchangeWrapper
 };
 
 const getComponentProps = (

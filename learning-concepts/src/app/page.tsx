@@ -28,7 +28,7 @@ export default async function HomePage() {
           ],
         },
           {
-          __component: "wrapper-component.interchangewrapper-wrapper",
+          __component: "wrapper-component.directional-card-wrapper",
           heading:{
             title: data.interchange.title,
             description: data.interchange.description,
