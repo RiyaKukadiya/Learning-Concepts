@@ -26,12 +26,12 @@ export default async function fetchApi({ endpoint, query, token }: FetchApiOptio
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const res = await fetch(url.toString(), { headers });
+  // const res = await fetch(url.toString(), { headers });
 
-  if (!res.ok) {
-    const errorBody = await res.text();
-    throw new Error(`Failed to fetch: ${res.status} ${res.statusText} - ${errorBody}`);
-  }
+  // if (!res.ok) {
+  //   const errorBody = await res.text();
+  //   throw new Error(`Failed to fetch: ${res.status} ${res.statusText} - ${errorBody}`);
+  // }
 
-  return res.json();
+  // return res.json();
 }

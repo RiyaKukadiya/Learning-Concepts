@@ -2,6 +2,7 @@
 import FeatureSection from "@/components/CustomInterchange";
 import CollectionMapper from "../components/CollectionMapper";
 import DraggableList from "../components/DraggableList";
+// import ScrollFunctionalityDemo from "../components/ScrollFunctionalityDemo"; 
 import fetchApi from "@/utils/strapi";
 import homepageData from "../content/homepage.json";
 
@@ -53,15 +54,16 @@ export default async function HomePage() {
     }
   }
   // Fetch CustomInterchange data from homepage.json
-  // const interchangeData = homepageData.interchangeWrapper;
+  const interchangeData = homepageData.interchangeWrapper;
 
   return (
     <main className=" container mx-auto flex flex-col min-h-screen bg-gray-50">
       <CollectionMapper data={data} />
       <div className="w-full flex flex-row justify-center">
         <DraggableList items={["React", "Vue", "Angular", "Svelte", "Solid"]} />
+        {/* <ScrollFunctionalityDemo /> */}
       </div>
-  {/* <div className=" container mx-auto w-full mt-10">
+  <div className=" container mx-auto w-full mt-10">
         <h2 className="text-3xl font-bold mb-6 text-center">
           {interchangeData.heading.title}
         </h2>
@@ -73,7 +75,7 @@ export default async function HomePage() {
             <FeatureSection key={item.title} {...item} direction={idx % 2 === 0 ? "left" : "right"} />
           ))}
         </div>
-      </div> */}
+      </div>
    
       <div className="grid grid-cols-3 text-center">
         <div>

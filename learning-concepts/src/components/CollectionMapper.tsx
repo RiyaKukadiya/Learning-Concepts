@@ -1,6 +1,7 @@
 import React from "react";
 import CardList from "./CardList";
-import CustomInterchangeWrapper from "./wrapper/CustomInterchangeWrapper";
+import CustomTabs from "./wrapper/CustomTabs";
+// import CustomInterchangeWrapper from "./wrapper/CustomInterchangeWrapper";
 
 interface SectionData {
   __component: string;
@@ -13,7 +14,7 @@ interface CollectionMapperProps {
 
 const componentsMap: Record<string, React.ElementType> = {
   "wrapper-component.card-wrapper": CardList,
-  "wrapper-component.directional-card-wrapper": CustomInterchangeWrapper
+  "wrapper-component.directional-card-wrapper": CustomTabs
 };
 
 const getComponentProps = (
